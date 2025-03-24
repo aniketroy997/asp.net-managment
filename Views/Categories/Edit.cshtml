@@ -1,0 +1,102 @@
+@model EventManagementSystem.Models.event_category
+
+@{
+    ViewData["Title"] = "Edit Category";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .edit-card {
+        background-color: #ffffff;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    }
+
+    .edit-title {
+        font-weight: 700;
+        color: #0d6efd;
+    }
+
+    .form-label {
+        font-weight: 500;
+        color: #495057;
+    }
+
+    .form-control {
+        border-radius: 0.5rem;
+    }
+
+    .form-check-label {
+        margin-left: 0.5rem;
+    }
+
+    .btn-primary, .btn-secondary {
+        border-radius: 0.5rem;
+    }
+</style>
+
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 90vh;">
+    <div class="col-md-8 edit-card">
+        <h3 class="text-center edit-title mb-4">Edit Category: @Model.category</h3>
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <input type="hidden" asp-for="category_id" />
+
+            <div class="mb-3">
+                <label asp-for="category" class="form-label">Category</label>
+                <input asp-for="category" class="form-control" />
+                <span asp-validation-for="category" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="description" class="form-label">Description</label>
+                <input asp-for="description" class="form-control" />
+                <span asp-validation-for="description" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="price_per_hour" class="form-label">Price Per Hour</label>
+                <input asp-for="price_per_hour" class="form-control" />
+                <span asp-validation-for="price_per_hour" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="price_per_day" class="form-label">Price Per Day</label>
+                <input asp-for="price_per_day" class="form-control" />
+                <span asp-validation-for="price_per_day" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="is_active" class="form-label d-block">Is Active</label>
+                <div class="form-check form-check-inline">
+                    <input asp-for="is_active" type="radio" value="true" id="isActiveTrue" class="form-check-input" @(Model.is_active ? "checked" : "") />
+                    <label class="form-check-label" for="isActiveTrue">True</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input asp-for="is_active" type="radio" value="false" id="isActiveFalse" class="form-check-input" @(!Model.is_active ? "checked" : "") />
+                    <label class="form-check-label" for="isActiveFalse">False</label>
+                </div>
+                <span asp-validation-for="is_active" class="text-danger d-block mt-1"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="max_capacity" class="form-label">Max Capacity</label>
+                <input asp-for="max_capacity" class="form-control" />
+                <span asp-validation-for="max_capacity" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

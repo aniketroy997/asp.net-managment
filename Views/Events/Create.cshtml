@@ -1,0 +1,96 @@
+@model EventManagementSystem.Models.eventstable
+
+@{
+    ViewData["Title"] = "Create Event";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .form-card {
+        background-color: #ffffff;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    }
+
+    .form-title {
+        font-weight: 700;
+        color: #0d6efd;
+    }
+
+    .form-label {
+        font-weight: 500;
+        color: #495057;
+    }
+
+    .form-control {
+        border-radius: 0.5rem;
+    }
+
+    .btn-primary, .btn-secondary {
+        border-radius: 0.5rem;
+    }
+</style>
+
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 90vh;">
+    <div class="col-md-8 form-card">
+        <h3 class="text-center form-title mb-4">Create New Event</h3>
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="event_name" class="form-label">Event Name</label>
+                <input asp-for="event_name" class="form-control" placeholder="Enter event name" />
+                <span asp-validation-for="event_name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="category" class="form-label">Category</label>
+                <input asp-for="category" class="form-control" placeholder="Enter category name" />
+                <span asp-validation-for="category" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="start_date" class="form-label">Start Date</label>
+                <input asp-for="start_date" class="form-control" type="date" />
+                <span asp-validation-for="start_date" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="end_date" class="form-label">End Date</label>
+                <input asp-for="end_date" class="form-control" type="date" />
+                <span asp-validation-for="end_date" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="venue" class="form-label">Venue</label>
+                <input asp-for="venue" class="form-control" placeholder="Enter venue name or address" />
+                <span asp-validation-for="venue" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="status" class="form-label">Status</label>
+                <input asp-for="status" class="form-control" placeholder="e.g., Confirmed, Pending" />
+                <span asp-validation-for="status" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="booking_user_name" class="form-label">Booked By</label>
+                <input asp-for="booking_user_name" class="form-control" placeholder="User who booked the event" />
+                <span asp-validation-for="booking_user_name" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                <button type="submit" class="btn btn-primary">Create Event</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

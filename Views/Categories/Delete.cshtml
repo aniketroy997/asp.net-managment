@@ -1,0 +1,80 @@
+@model EventManagementSystem.Models.event_category
+
+@{
+    ViewData["Title"] = "Delete Category";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .delete-card {
+        background-color: #ffffff;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    }
+
+    .delete-title {
+        color: #dc3545;
+        font-weight: 700;
+    }
+
+    .delete-subtext {
+        color: #6c757d;
+    }
+
+    .btn-danger {
+        border-radius: 0.5rem;
+    }
+
+    .btn-secondary {
+        border-radius: 0.5rem;
+    }
+
+    dt {
+        font-weight: 600;
+        color: #495057;
+    }
+
+    dd {
+        margin-bottom: 0.75rem;
+    }
+</style>
+
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 90vh;">
+    <div class="col-md-8 delete-card">
+        <h1 class="text-center delete-title mb-4">Delete Category</h1>
+        <h5 class="text-center delete-subtext mb-4">Are you sure you want to delete this category?</h5>
+        <hr />
+
+        <dl class="row">
+            <dt class="col-sm-4">Category</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.category)</dd>
+
+            <dt class="col-sm-4">Description</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.description)</dd>
+
+            <dt class="col-sm-4">Price Per Hour</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.price_per_hour)</dd>
+
+            <dt class="col-sm-4">Price Per Day</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.price_per_day)</dd>
+
+            <dt class="col-sm-4">Max Capacity</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.max_capacity)</dd>
+
+            <dt class="col-sm-4">Is Active</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.is_active)</dd>
+        </dl>
+
+        <div class="d-flex justify-content-between mt-4">
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="category_id" />
+                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            </form>
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </div>
+</div>
